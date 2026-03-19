@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Для Жени 💗</title>
+    <style>
+        /* ===== Базовые стили ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #1a0f1a;
+            color: white;
+            text-align: center;
+            overflow-x: hidden;
+            position: relative;
+            min-height: 100vh;
+            opacity: 0;
+            animation: fadeInPage 1.5s ease forwards;
+        }
+
+        @keyframes fadeInPage {
+            to { opacity: 1; }
+        }
+
+        /* Фоновое мерцание (розовый оттенок) */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(circle at 50% 50%, #ffb6c120 0%, #1a0f1a 80%);
+            pointer-events: none;
+            z-index: -1;
+            animation: bgFlicker 5s infinite;
+        }
+
+        @keyframes bgFlicker {
+            0% { opacity: 0.3; }
+            50% { opacity: 0.7; }
+            100% { opacity: 0.3; }
+        }
+
+        /* ===== Заголовок ===== */
+        .title {
+            font-size: clamp(40px, 12vw, 80px);
+            margin: 40px 20px 20px;
+            color: #ffb6c1;
+            text-shadow:
+                0 0 5px #ffb6c1,
+                0 0 15px #ff69b4,
+                0 0 30px #ff1493,
+                0 0 60px #ff1493;
+            animation: glowPulse 2s infinite alternate;
+            letter-spacing: 4px;
+        }
+
+        @keyframes glowPulse {
+            from { text-shadow: 0 0 5px #ffb6c1, 0 0 15px #ff69b4, 0 0 30px #ff1493; }
+            to { text-shadow: 0 0 15px #ffb6c1, 0 0 30px #ff69b4, 0 0 60px #ff1493, 0 0 90px #ff1493; }
+        }
+
+        /* ===== Неоновое сообщение ===== */
+        .message {
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 0 20px;
+            font-size: clamp(18px, 4vw, 26px);
+            line-height: 1.6;
+            color: #ffe4ec;
+            text-shadow:
+                0 0 3px #ffb6c1,
+                0 0 8px #ff69b4,
+                0 0 15px #ff1493;
+            white-space: pre-line;
+            overflow: hidden;
+            border-right: 3px solid #ffb6c1;
+            animation: typing 5s steps(70, end), blink .8s infinite, neonFlicker 3s infinite;
+            margin-bottom: 40px;
+        }
+
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        @keyframes blink {
+            50% { border-color: transparent; }
+        }
+
+        @keyframes neonFlicker {
+            0%, 100% { text-shadow: 0 0 3px #ffb6c1, 0 0 8px #ff69b4, 0 0 15px #ff1493; }
+            33% { text-shadow: 0 0 5px #ffb6c1, 0 0 12px #ff69b4, 0 0 25px #ff1493; }
+            66% { text-shadow: 0 0 2px #ffb6c1, 0 0 5px #ff69b4, 0 0 10px #ff1493; }
+        }
+
+        /* ===== Сетка с фото (контур сердца) ===== */
+        .heart-grid {
+            display: grid;
+            grid-template-columns: repeat(10, 1fr);
+            gap: 6px;
+            justify-content: center;
+            max-width: 1000px;
+            margin: 0 auto 40px;
+            padding: 10px;
+        }
+
+        .photo {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            overflow: hidden;
+            box-shadow: 0 0 15px #ff69b4;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            opacity: 0;
+            transform: scale(0.5);
+            background: #2a1a2a;
+            border-radius: 12px;
+            animation: photoGlow 2s infinite alternate;
+        }
+
+        .photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.3s;
+        }
+
+        .photo.visible {
+            opacity: 1;
+            transform: scale(1);
+            transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .photo:hover {
+            transform: scale(1.08) rotate(1deg);
+            box-shadow: 0 0 30px #ff69b4;
+        }
+
+        .photo:hover img {
+            transform: scale(1.05);
+        }
+
+        @keyframes photoGlow {
+            from { box-shadow: 0 0 8px #ffb6c1; }
+            to { box-shadow: 0 0 25px #ff69b4, 0 0 50px #ff1493; }
+        }
+
+        /* ===== Адаптация для мобильных ===== */
+        @media (max-width: 600px) {
+            .heart-grid {
+                gap: 3px;
+                padding: 5px;
+            }
+        }
+
+        /* ===== Подвал ===== */
+        .footer {
+            margin: 40px 0 60px;
+            font-size: 18px;
+            opacity: 0.9;
+            color: #ffe4ec;
+            text-shadow: 0 0 8px #ff69b4;
+            animation: footerFade 3s infinite;
+        }
+
+        @keyframes footerFade {
+            0%,100% { opacity: 0.8; }
+            50% { opacity: 1; }
+        }
+
+        /* ===== Летающие эмодзи (цветы, бабочки) ===== */
+        .float-emoji {
+            position: absolute;
+            font-size: 24px;
+            pointer-events: none;
+            animation: float 6s linear forwards;
+            z-index: 10;
+            filter: drop-shadow(0 0 5px #ff69b4);
+            will-change: transform, opacity;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(-120vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* ===== Кнопка музыки ===== */
+        #musicButton {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #ff69b4, #ff1493);
+            border: none;
+            color: white;
+            padding: 14px 28px;
+            border-radius: 60px;
+            cursor: pointer;
+            box-shadow: 0 0 25px #ff69b4;
+            z-index: 1000;
+            font-size: 18px;
+            font-weight: bold;
+            transition: 0.3s;
+            border: 1px solid rgba(255,255,255,0.3);
+            backdrop-filter: blur(4px);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        #musicButton:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 40px #ff69b4;
+        }
+
+        #musicButton.playing {
+            background: linear-gradient(135deg, #4a2a4a, #2a1a2a);
+            box-shadow: 0 0 15px #ff69b4;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+
+    <h1 class="title">ЖЕНЯ 💗</h1>
+
+    <div class="message">
+        Женечка, с днём рождения! 💐
+
+        Пусть этот день будет наполнен
+        нежностью, радостью и самыми тёплыми моментами.
+
+        Ты невероятная, и этот маленький сюрприз — для тебя.
+        С любовью и наилучшими пожеланиями! 🦋✨
+    </div>
+
+    <!-- Сетка для фото (контур сердца) -->
+    <div class="heart-grid" id="heartGrid"></div>
+
+    <div class="footer">Для тебя, с любовью 💖</div>
+
+    <!-- Кнопка управления музыкой -->
+    <button id="musicButton">🎵 Включить музыку</button>
+    <audio id="bgMusic" loop preload="auto">
+        <source src="Perfect.mp3" type="audio/mpeg">
+        Ваш браузер не поддерживает аудио.
+    </audio>
+
+    <script>
+        (function() {
+            // === 1. Массив с фотографиями ===
+            const myPhotos = [
+                'photo_1.jpg',
+                'photo_2.jpg',
+                'photo_3.jpg',
+                'photo_4.jpg',
+                'photo_5.jpg',
+                'photo_6.jpg',
+                'photo_7.jpg'
+            ];
+
+            // === 2. Генерация контура сердца из фото ===
+            const grid = document.getElementById('heartGrid');
+            const rows = 10;
+            const cols = 10;
+
+            // Функция проверки принадлежности к сердцу
+            function isInHeart(row, col) {
+                // Нормализация координат от -1.5 до 1.5
+                const x = (col - 4.5) / 4.5 * 1.5;
+                const y = -((row - 4.5) / 4.5 * 1.5); // Переворачиваем правильно
+                // Формула сердца: (x² + y² - 1)³ - x²·y³ ≤ 0
+                const val = Math.pow(x * x + y * y - 1, 3) - x * x * Math.pow(y, 3);
+                return val <= 0;
+            }
+
+            // Функция проверки, является ли ячейка граничной (имеет соседа вне сердца)
+            function isBoundary(row, col) {
+                if (!isInHeart(row, col)) return false;
+                // Соседи: вверх, вниз, влево, вправо
+                const directions = [[-1, 0], [1, 0], [0, -1], [0, 1]];
+                for (let [dr, dc] of directions) {
+                    const nr = row + dr;
+                    const nc = col + dc;
+                    if (nr < 0 || nr >= rows || nc < 0 || nc >= cols || !isInHeart(nr, nc)) {
+                        return true; // за границей или сосед не в сердце
+                    }
+                }
+                return false;
+            }
+
+            const boundaryCells = [];
+
+            for (let r = 0; r < rows; r++) {
+                for (let c = 0; c < cols; c++) {
+                    const photoDiv = document.createElement('div');
+                    photoDiv.className = 'photo';
+
+                    if (isBoundary(r, c)) {
+                        const img = document.createElement('img');
+                        // Берём фото циклически из массива
+                        img.src = myPhotos[(r * cols + c) % myPhotos.length];
+                        img.alt = '💗';
+                        photoDiv.appendChild(img);
+                        // Рассчитываем расстояние от центра для порядка появления
+                        const distance = Math.sqrt(Math.pow(r - 4.5, 2) + Math.pow(c - 4.5, 2));
+                        boundaryCells.push({
+                            element: photoDiv,
+                            distance: distance
+                        });
+                    } else {
+                        // Пустые ячейки делаем невидимыми
+                        photoDiv.style.opacity = '0';
+                        photoDiv.style.pointerEvents = 'none';
+                        photoDiv.style.animation = 'none';
+                        photoDiv.style.boxShadow = 'none';
+                    }
+                    grid.appendChild(photoDiv);
+                }
+            }
+
+            // Анимация появления контура от центра к краям
+            boundaryCells.sort((a, b) => a.distance - b.distance);
+            boundaryCells.forEach((cell, index) => {
+                setTimeout(() => {
+                    cell.element.classList.add('visible');
+                }, index * 30); // каждые 30 мс появляется новая фотография
+            });
+
+            // === 3. Летающие эмодзи (цветы, бабочки, звёздочки) ===
+            const symbols = ['🌸', '🌼', '🌺', '🦋', '✨', '💐', '🌷', '🕊️', '⭐', '🌿'];
+            function createFloatingEmoji() {
+                const emoji = document.createElement('div');
+                emoji.className = 'float-emoji';
+                emoji.innerText = symbols[Math.floor(Math.random() * symbols.length)];
+                emoji.style.left = Math.random() * 100 + 'vw';
+                emoji.style.top = (Math.random() * 100 + 10) + 'vh';
+                emoji.style.animationDuration = (4 + Math.random() * 8) + 's';
+                emoji.style.fontSize = (15 + Math.floor(Math.random() * 35)) + 'px';
+                emoji.style.opacity = Math.random() * 0.6 + 0.2;
+                document.body.appendChild(emoji);
+
+                emoji.addEventListener('animationend', () => emoji.remove());
+            }
+
+            for (let i = 0; i < 60; i++) {
+                setTimeout(createFloatingEmoji, i * 20);
+            }
+
+            setInterval(createFloatingEmoji, 40);
+
+            // === 4. Управление музыкой ===
+            const musicButton = document.getElementById('musicButton');
+            const bgMusic = document.getElementById('bgMusic');
+
+            musicButton.addEventListener('click', function() {
+                bgMusic.play()
+                    .then(() => {
+                        musicButton.innerHTML = '🎵 Играет 💗';
+                        musicButton.classList.add('playing');
+                    })
+                    .catch(error => {
+                        console.log('Автовоспроизведение заблокировано:', error);
+                        alert('Нажмите ещё раз после взаимодействия со страницей');
+                    });
+            });
+
+            document.body.addEventListener('click', function initMusic() {
+                bgMusic.play()
+                    .then(() => {
+                        musicButton.innerHTML = '🎵 Играет 💗';
+                        musicButton.classList.add('playing');
+                        document.body.removeEventListener('click', initMusic);
+                    })
+                    .catch(() => {});
+            }, { once: true });
+
+        })();
+    </script>
+</body>
+</html>
